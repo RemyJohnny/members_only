@@ -5,6 +5,8 @@ const passport = require("passport");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const helmet = require("helmet");
+const compression = require("compression");
 
 require("dotenv").config();
 
@@ -31,6 +33,8 @@ connectDB();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+app.use(compression());
+app.use(helmet());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(
