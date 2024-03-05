@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1(class="text-3xl font-bold tracking-tight text-center shadow py-2 text-gray-900") posts
+  div(class="flex flex-col items-center")
+    each post in posts
+      div(class="mt-4 md:w-[60%] w-full bg-gray-800 rounded-lg shadow p-2 relative")
+        if(user && user.is_admin)
+          a(href=`/post/${post.id}/delete` class="text-red-300 absolute bottom-4 right-4")
+            span(class="sr-only") Delete
+            svg(class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14") 
+              path(stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6")
+        if(user && user.is_member)
+          div(class="flex items-center justify-between p-1 gap-3 border-b border-gray-600 mb-1")
+            div(class="flex items-center gap-3")
+              img(src="/images/placeholder.png" class="w-6 h-6 rounded-full")
+              p(class="text-white") #{post.user.username} #[span(class=" text-xs text-gray-400") (#{post.user.status})]
+            div 
+              p(class=" text-xs text-gray-400 ") #{post.postedAt}
+        else
+          div(class="flex items-center p-4 mb-4 text-sm text-gray-200 rounded-lg bg-gray-700")
+            svg(class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20")
+              path(d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z")
+            span(class="sr-only") info 
+            div Join the club to see who posted this  #[a(class='font-medium text-blue-700' href="/user/join-club")  Join NOW] 
+        div(class="flex flex-col  items-center  md:flex-row md:max-w-xl ")
+          if(post.post_img)
+            a(href=`/images/posts/${post.post_img}`) 
+              img(class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src= `/images/posts/${post.post_img}` alt="")
+          div(class="flex flex-col justify-between p-4 leading-normal")
+            h5(class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white") #{post.title}
+            p(class="mb-3 font-normal text-gray-700 dark:text-gray-400") #{post.text}

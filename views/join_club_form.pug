@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    form( method="post" class="max-w-md mx-auto") 
+        if errors 
+            ul(class="bg-red-100 my-4 border border-red-400 text-red-700 px-4 py-3 rounded text-sm" role="alert") 
+                each error in errors 
+                    li(class="") !  !{error.msg}
+        label(for="club_code" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white") Search 
+        div(class="relative")
+            input(type="text", name="club_code" id="club_code" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Enter Club Code" required ) 
+            button(type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ") Join
+
+    p(class="mt-2 text-sm text-center") message me on instagram for the Club Code 😊
+        a(href="https://www.instagram.com/remy_xle/" class="inline-flex items-center justify-center p-5 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100") 
+            span(class="w-full") request 
+            svg(class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10")
+                path(stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9")

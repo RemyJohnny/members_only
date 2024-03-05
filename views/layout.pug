@@ -1,0 +1,58 @@
+doctype html
+html(class="h-full bg-gray-100")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title= title
+    link(href="/styles/style.css", rel="stylesheet")
+  body(class="h-full")
+    div(class="")
+      nav(class="bg-gray-800")
+        div(class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8")
+          div(class="flex h-16 items-center justify-between")
+            div(class="flex items-center")
+              a(class="flex-shrink-0" href="/")
+                h1(class="text-3xl font-bold tracking-tight text-white") members#[em(class="text-blue-700") ONLY] 
+            div(class="hidden md:block")
+                if !user
+                  div(class="ml-10 flex items-baseline space-x-4")
+                    a(href="/user/log-in", class="text-gray-300 hover:bg-gray-700 border hover:text-white rounded-md px-3 py-2 text-sm font-medium") Log In
+                    a(href="/user/sign-up", class="text-gray-300 hover:bg-gray-700 border hover:text-white rounded-md px-3 py-2 text-sm font-medium") Sign Up
+                else 
+                  div(class="ml-10 flex items-center space-x-4")
+                    div
+                      a(href="/post/add", class="text-gray-300 hover:bg-gray-700 border hover:text-white rounded-md px-3 py-2 text-sm font-medium") Add Post
+                    div(class="relative ml-3")
+                      button#user-menu-btn(class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800")
+                        span(class="sr-only") Open User menu 
+                        img(src="/images/placeholder.png", alt="", class="h-8 w-8 rounded-full")
+                      div#user-menu(class="absolute hidden right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role='menu')
+                        a(href="/user/join-club", class="block px-4 py-2 text-sm text-gray-700") Join Club
+                        a(href="/user/log-out", class="block px-4 py-2 text-sm text-gray-700") Log Out
+            div(class="-mr-2 flex md:hidden")
+              button#mobile-menu-btn(class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800")
+                svg(class="block h-6 w-6",fill="none",viewBox="0 0 24 24",stroke-width="1.5",stroke="currentColor",aria-hidden="true")
+                  path(stroke-linecap="round",stroke-linejoin="round",d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5")
+        div#mobile-menu(class="hidden")
+          if !user
+            div(class="space-y-1 px-2 pb-3 pt-2 sm:px-3")
+              a(href="/user/log-in", class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium") Log In
+              a(href="/user/sign-up", class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium") Sign up
+          else 
+            div(class="space-y-1 px-2 pb-3 pt-2 sm:px-3")
+              a(href="/post/add", class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium") Add Post
+              a(href="/user/join-club", class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium") Join Club
+            div(class="border-t border-gray-700 pb-3 pt-4")
+              div(class="flex items-center px-5")
+                div(class="flex-shrink-0")
+                  img(src="/images/placeholder.png", alt="", class="h-10 w-10 rounded-full")
+                div(class="ml-3")
+                  div(class="text-base font-medium leading-none text-white uppercase") #{user.fullName} 
+                  div(class="text-sm font-medium leading-none text-gray-400") @#{user.username}
+              div(class="mt-3 space-y-1 px-2")
+                a(href="/user/log-out", class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white") Log Out
+    main 
+      div(class="mx-auto max-w-7xl p-10  sm:px-6 lg:px-8")
+        block content
+    script(src="/javascripts/index.js") 

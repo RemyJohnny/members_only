@@ -1,0 +1,5 @@
+set_secret.js
+node_modules
+.env
+logs
+*.log
