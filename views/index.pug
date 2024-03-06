@@ -5,7 +5,7 @@ block content
   div(class="flex flex-col items-center")
     each post in posts
       div(class="mt-4 md:w-[60%] w-full bg-gray-800 rounded-lg shadow p-2 relative")
-        if(user && user.is_admin)
+        if(user && (user.is_admin || user.id === post.user.id))
           a(href=`/post/${post.id}/delete` class="text-red-300 absolute bottom-4 right-4")
             span(class="sr-only") Delete
             svg(class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14") 
